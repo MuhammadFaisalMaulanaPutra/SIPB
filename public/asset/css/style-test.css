@@ -1,0 +1,261 @@
+@font-face {
+	font-family: 'quicksand';
+		src: 
+		local('Quicksand'),
+		local('Quicksand'),
+		url('../quicksand/Quicksand-Medium.ttf') 
+		format('opentype');
+}
+/*bold version*/
+@font-face {
+	font-family: 'quicksand';
+		src: 
+		local('Quicksand Bold'),
+		local('Quicksand-Bold'),
+		url('../quicksand/Quicksand-Bold.otf') 
+		format('opentype');
+}
+
+
+*{
+	font-family: quicksand;
+}
+
+/*html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}*/
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+
+body{
+	background: url(../img/bg-web.png) no-repeat fixed;  
+	background-size: cover;
+	margin: 0;
+	min-height: 100%;
+	padding-bottom: 25rem;
+	position: relative;
+	/*background-image: url(../img/bg-web.png);
+	background-repeat: no-repeat;
+	background-size: cover;*/
+	padding-right: 0 !important;
+}
+
+#affix1.affix {
+    top: 100px;
+}
+
+.affix-bottom{
+	position: absolute;
+}
+
+#affix2.affix {
+    top: 230px;
+}
+/*************WARNA***************/
+
+.merah{
+	color: #e62e00;
+}
+
+.biru{
+	color: #7a91d0;
+}
+
+.oranye{
+	color: orange;
+}
+
+.hijau{
+	
+}
+
+.kuning{
+	color: yellow;
+}
+
+/**************NAVBAR**************/
+.nav-search .input-group input[type=text]{
+	width: 800px;
+}
+
+.nav-dua .navbar-brand{
+	font-size: 25px;
+}
+
+.navbar-nav ul{
+	display: none;
+	
+}
+
+li .dropdown-kat{
+	display: inline-block;
+}
+
+.sub-menu {
+		/*margin-top: 10px;*/
+		width: 500px;
+		color: black;
+		position: absolute;
+		display: none;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		z-index: 1;
+		background-color: #f9f9f9;
+	}
+
+.sub-menu:before, .sub-menu:after{
+	border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #f9f9f9;
+    top: -10px;
+    content: '';
+    left: 10%;
+    margin-left: -20px;
+    position: absolute;
+}
+
+.sub-menu a:hover {
+		color: #232323 !important;
+		background: #f3f3f3 !important;
+	}
+
+.sub-menu li{
+	padding: 14px 6px;
+}
+
+.navbar-nav .dropdown-kat:hover > .sub-menu{
+	display: block;
+}
+
+.nav-satu{
+	margin-top: 50px;
+	margin-bottom: 0px;
+	background: none;
+	background-color: #555;
+	min-height: 40px;
+}
+
+.nav-satu .navbar-nav > li > a{
+	font-weight: 400;
+	color: white;
+	padding-top:5px !important;
+	padding-bottom:5px !important;
+	line-height: 30px;
+	height: 40px;
+}
+
+.nav-satu .navbar-nav > li > a:hover{
+	background-color: orange;
+}
+
+
+.user-info img{
+	margin: 10px;
+	width: 50px;
+	height: auto;
+}
+
+.nav-satu .navbar-nav{
+	color: white;
+}
+
+/********************KONTEN*************/
+
+#konten{
+  margin-top: 110px;
+}
+
+.topic-title{
+	font-weight: 500;
+	font-size: 25px;
+}
+
+.img-topic{
+	margin-right: 5px;
+}
+
+.panel-default .panel-heading{
+	background-image: none;
+	background-color: white;
+	margin-bottom: 0px;
+}
+.panel-view .panel-heading{
+	background-image: none;
+	background-color: white;
+	margin-bottom: 0px;
+	border-bottom: 3px #efefef solid;
+}
+
+.panel-view .panel-body{
+	border-bottom: 3px #efefef solid;
+}
+
+.panel-default .panel-body .pull-left a{
+	color: black;
+	text-decoration: none;
+}
+
+.pagination li a{
+	border: 1px solid orange;
+	margin-left: 5px;
+	border-radius: 5px;
+	color: black;
+}
+
+.pagination li:hover a{
+	background-color: orange;
+	border: 1px solid orange;
+	color: white;
+}
+
+.pagination li.active a{
+	border: 1px solid orange;
+	background-color: orange;
+	color: white;
+}
+
+.pagination li.active:hover a{
+	background-color: orange;
+	border: 1px solid orange;
+	color: white;
+}
+
+.wrapper-profil{
+	margin-left: 5px;
+	margin-top: 240px;
+	position: absolute;
+}
+
+.profil-name{
+	margin-left: 10px;
+	margin-top: 65px;
+	color: white;
+	
+}
+
+.profil-name .name{
+	font-size: 25px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.notifikasi .fa-star, .notifikasi .fa-eye{
+	padding-left: 8px;
+}
+
+@media(max-width: 768px){
+	#konten{
+            padding-left: 0px;
+            margin-top: 50px;
+	}
+}
