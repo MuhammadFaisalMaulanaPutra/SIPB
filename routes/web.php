@@ -92,19 +92,19 @@ Route::delete('/dashboardhistori/delete/{id}',[PelaporanController::class,'destr
 
 // -------------------------TABEL--------------------------------
 
-Route::get('/dashboard-table-user',[UserController::class, 'index']);
+Route::get('/dashboard-table-user',[UserController::class, 'index'])->middleware('auth');
 
-Route::get('/dashboard-table-role',[RoleController::class, 'index']);
+Route::get('/dashboard-table-role',[RoleController::class, 'index'])->middleware('auth');
 
-Route::get('/dashboard-table-bencana',[BencanaController::class, 'index']);
+Route::get('/dashboard-table-bencana',[BencanaController::class, 'index'])->middleware('auth');
 
-Route::get('/dashboard-table-provinsi', [ProvinsiController::class, 'index']);
+Route::get('/dashboard-table-provinsi', [ProvinsiController::class, 'index'])->middleware('auth');
 
-Route::get('/dashboard-table-kota', [KotaController::class, 'index']);
+Route::get('/dashboard-table-kota', [KotaController::class, 'index'])->middleware('auth');
 
-Route::get('/dashboard-table-kecamatan', [KecamatanController::class, 'index']);
+Route::get('/dashboard-table-kecamatan', [KecamatanController::class, 'index'])->middleware('auth');
 
-Route::get('/dashboard-table-report', [PelaporanController::class, 'index']);
+Route::get('/dashboard-table-report', [PelaporanController::class, 'index'])->middleware('auth');
 
 Route::get('/dashboard-table-approved', [PelaporanController::class, 'approved']);
 

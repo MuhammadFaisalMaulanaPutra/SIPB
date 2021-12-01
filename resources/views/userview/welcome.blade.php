@@ -39,7 +39,7 @@
    Sampaikan Laporan Anda Langsung Kepada Instansi Pemerintah Berwenang
 		   </h3>
 	   </div>
-   
+	   @auth
 	   <hr>
 			 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 			   <div class="panel panel-default">
@@ -127,6 +127,8 @@
 	   
    
 		   <hr>
+		   
+	   @endauth
    
    
    
