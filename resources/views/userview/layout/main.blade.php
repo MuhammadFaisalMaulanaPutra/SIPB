@@ -21,6 +21,9 @@
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+
 </head>
 
 <body>
@@ -51,13 +54,19 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hai, {{ auth()->user()->nama_user }} <b class="caret"></b></a>
 						<ul class="dropdown-menu">
                             <li><a href=''>Profile</a></li>
+							<li><a href='dashboard-table-report'>Dashboard</a></li>
 							<div class="d-grid gap-2 col-6 mx-auto">
 								
 							<form action="/logout" method="post">
 								@csrf
-								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-									<button type="submit" class="btn btn-danger">Logout</button>
-								</div>
+								<button type="submit">
+									<a class="btn btn-danger btn-icon-split">
+										<span class="icon text-white-50">
+											<i class="bi bi-box-arrow-left"></i>
+										</span>
+										<span class="text">Logout</span>
+									</a>	
+								</button>
 							</form>
 						</ul>
 					</li>
