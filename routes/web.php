@@ -106,6 +106,6 @@ Route::get('/dashboard-table-kecamatan', [KecamatanController::class, 'index'])-
 
 Route::get('/dashboard-table-report', [PelaporanController::class, 'index'])->middleware('auth');
 
-Route::get('/dashboard-table-approved', [PelaporanController::class, 'approved']);
+Route::get('/dashboard-table-approved', [PelaporanController::class, 'approved'])->middleware('auth');
 
-Route::get('/dashboard-table-approved-korban-{id}', [DetailKorbanController::class, 'index']);
+Route::get('/dashboard-table-approved-korban-{id}', [DetailKorbanController::class, 'index'])->middleware('auth');
