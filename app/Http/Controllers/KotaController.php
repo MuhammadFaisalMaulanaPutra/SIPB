@@ -14,7 +14,10 @@ class KotaController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboardview.table-kota', [
+            'city' => Kota::with('provinsi')->get(),
+            'title' => 'Kota'
+        ]);
     }
 
     /**

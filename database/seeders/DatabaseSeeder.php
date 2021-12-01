@@ -16,25 +16,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {   
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(50)->create();
         
         \App\Models\Role::factory(10)->create();
         
-        \App\Models\UserRole::factory(10)->create();
-        
-        \App\Models\Kategori_Bencana::factory(2)->create();
+        \App\Models\UserRole::factory(50)->create();
         
         \App\Models\Provinsi::factory(10)->create();
      
-        \App\Models\Kota::factory(10)->create();
+        \App\Models\Kota::factory(30)->create();
         
-        \App\Models\Kecamatan::factory(10)->create();
+        \App\Models\Kecamatan::factory(50)->create();
+        
+        DB::table('kategori_bencana')->insert([
+            ['Kategori_Bencana'=> 'Alam'],['Kategori_Bencana'=> 'Non-Alam']
+        ]);
         
         \App\Models\Bencana::factory(10)->create();
         
-        \App\Models\Pelaporan::factory(10)->create();
+        \App\Models\Pelaporan::factory(50)->create();
         
-        \App\Models\DetailKorban::factory(10)->create();
+        \App\Models\DetailKorban::factory(100)->create();
 
          
         // DB::table('users')->insert([

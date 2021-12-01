@@ -13,11 +13,11 @@ class Kecamatan extends Model
 
     public function kota()
     {
-        return $this->belongsTo('App/Kota','FK_ID_Kota','id_kecamatan');
+        return $this->belongsTo(Kota::class,'FK_ID_KOTA','id');
     }
 
     public function Pelaporan()
     {
-        return $this->hasMany('App/Pelaporan','FK_Id_kecamatan','id_kecamatan');
+        return $this->hasMany(Pelaporan::class,'FK_Id_kecamatan','id_kecamatan');
     }
 }

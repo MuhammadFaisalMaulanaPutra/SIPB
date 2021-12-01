@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
+    <meta name="description" content="Lancana">
+    <meta name="author" content="Lancana">
+    <link rel="icon" href="assets/images/lancanabig.png">
     <title>Lancana | Dashboard</title>
 
     <!-- Custom fonts for this template -->
@@ -54,16 +54,16 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link " href="">
+            <li class="nav-item {{ ($title === 'Incoming Report') ? 'active' : '' }}">
+                <a class="nav-link " href="dashboard-table-report">
                     <i class="bi bi-journal-text"></i>
-                    <span>Report</span>
+                    <span>Incoming Report</span>
                 </a>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="">
+            <li class="nav-item {{ ($title === 'Approved Report') ? 'active' : '' }}">
+                <a class="nav-link" href="dashboard-table-approved">
                     <i class="bi bi-journal-check"></i>
                     <span>Approved Report</span>
                 </a>
@@ -104,9 +104,9 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="">Provinsi</a>
-                        <a class="collapse-item" href="">Kota</a>
-                        <a class="collapse-item" href="">Kecamatan</a>
+                        <a class="collapse-item" href="dashboard-table-provinsi">Provinsi</a>
+                        <a class="collapse-item" href="dashboard-table-kota">Kota</a>
+                        <a class="collapse-item" href="dashboard-table-kecamatan">Kecamatan</a>
                         <div class="collapse-divider"></div>
                     </div>
                 </div>    

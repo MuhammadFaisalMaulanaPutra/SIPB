@@ -14,7 +14,10 @@ class KecamatanController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboardview.table-kecamatan', [
+            'district' => Kecamatan::with(['kota.provinsi'])->get(),
+            'title' => 'Kecamatan'
+        ]);
     }
 
     /**

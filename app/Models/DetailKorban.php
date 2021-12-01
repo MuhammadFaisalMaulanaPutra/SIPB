@@ -13,6 +13,6 @@ class DetailKorban extends Model
 
     public function pelaporan()
     {
-        return $this->belongsTo('App/Pelaporan','FK_Id_pelaporan','id_pelaporan');
+        return $this->belongsTo(Pelaporan::class,'FK_Id_pelaporan','id');
     }
 }

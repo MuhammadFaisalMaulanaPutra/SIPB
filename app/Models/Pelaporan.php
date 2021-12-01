@@ -19,7 +19,7 @@ class Pelaporan extends Model
 
     public function user()
     {
-        return $this->belongsTo('App/User','FK_Id_user','id_pelaporan');
+        return $this->belongsTo(User::class,'FK_Id_user','id');
     }
 
     public function kecamatan()

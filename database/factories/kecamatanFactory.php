@@ -22,7 +22,7 @@ class kecamatanFactory extends Factory
     public function definition()
     {
         return [
-            'Nama_Kecamatan'=> $this->faker->city(),
+            'Nama_Kecamatan'=> $this->faker->unique()->city(),
             'FK_ID_KOTA' => mt_rand(1,5),
         ];
     }

@@ -26,9 +26,9 @@ class pelaporanFactory extends Factory
             'isi_laporan' => $this->faker->sentence(3),
             'waktu_bencana'=> $this->faker->time(),
             'status'=> $this->faker->boolean(),
-            'FK_Id_user' => mt_rand(1,5),
-            'FK_Id_bencana' => mt_rand(1,5),
-            'FK_Id_kecamatan' => mt_rand(1,5),
+            'FK_Id_user' => mt_rand(1,50),
+            'FK_Id_bencana' => mt_rand(1,10),
+            'FK_Id_kecamatan' => mt_rand(1,50),
         ];
     }
 }

@@ -16,11 +16,10 @@ class ProvinsiController extends Controller
      */
     public function index()
     {
-        $bencana = Bencana::all();
-        $pelaporan = Pelaporan::all();
 
-        return view('', [
-            'bencana' => $bencana,
+        return view('dashboardview.table-provinsi', [
+            'province' => Provinsi::all(),
+            'title' => 'Provinsi'
         ]);
     }
 

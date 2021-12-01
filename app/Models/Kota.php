@@ -13,7 +13,7 @@ class Kota extends Model
 
     public function provinsi()
     {
-        return $this->belongsTo('App/Provinsi','FK_ID_PROVINSI','id_kota');
+        return $this->belongsTo(Provinsi::class,'FK_ID_PROVINSI','id');
     }
 
     public function kecamatan()

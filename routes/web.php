@@ -1,13 +1,17 @@
 <?php
 
 use App\Http\Controllers\BencanaController;
+use App\Http\Controllers\DetailKorbanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeConrtoller;
+use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\KotaController;
 use App\Http\Controllers\PelaporanController;
 use App\Http\Controllers\Table_UserController;
 use App\Http\Controllers\UserController;
 use App\Models\Pelaporan;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\RoleController;
 
 /*
@@ -86,9 +90,22 @@ Route::delete('/dashboard/delete/{id}',[UserController::class,'destroy']);
 
 Route::delete('/dashboardhistori/delete/{id}',[PelaporanController::class,'destroy']);
 
+// -------------------------TABEL--------------------------------
+
 Route::get('/dashboard-table-user',[UserController::class, 'index']);
 
 Route::get('/dashboard-table-role',[RoleController::class, 'index']);
 
 Route::get('/dashboard-table-bencana',[BencanaController::class, 'index']);
 
+Route::get('/dashboard-table-provinsi', [ProvinsiController::class, 'index']);
+
+Route::get('/dashboard-table-kota', [KotaController::class, 'index']);
+
+Route::get('/dashboard-table-kecamatan', [KecamatanController::class, 'index']);
+
+Route::get('/dashboard-table-report', [PelaporanController::class, 'index']);
+
+Route::get('/dashboard-table-approved', [PelaporanController::class, 'approved']);
+
+Route::get('/dashboard-table-approved-korban-{id}', [DetailKorbanController::class, 'index']);

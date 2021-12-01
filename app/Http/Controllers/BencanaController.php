@@ -15,7 +15,7 @@ class BencanaController extends Controller
     public function index()
     {
         return view('dashboardview.table-bencana', [
-            'bencana' => Bencana::all(),
+            'bencana' => Bencana::with('kategori_bencana')->get(),
             'title' => 'Bencana'
          ]);
     }

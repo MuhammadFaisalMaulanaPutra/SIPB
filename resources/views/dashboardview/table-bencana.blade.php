@@ -11,7 +11,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-dark">DataTables User</h6>
+            <h6 class="m-0 font-weight-bold text-dark">DataTables {{ $title }}</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -24,10 +24,8 @@
                     </thead>
                     {{-- <tfoot>
                         <tr>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Tanggal Lahir</th>
-                            <th>Role</th>
+                            <th>Bencana</th>
+                            <th>Kategori Bencana</th>
                         </tr>
                     </tfoot> --}}
                     <tbody>

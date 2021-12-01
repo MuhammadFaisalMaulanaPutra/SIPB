@@ -18,24 +18,18 @@ class PelaporanController extends Controller
      */
     public function index()
     {
-        $bencana = Bencana::all();
-        $pelaporan = Pelaporan::all();
-
-        return view('histori', [
-           'pelaporan' => Pelaporan::all(),
-           
+        return view('dashboardview.table-pelaporan', [
+           'report' => Pelaporan::where('status','0')->get(),
+           'title' => 'Incoming Report'
         ]);
     }
 
-    public function histori()
+    public function approved()
     {
-        $bencana = Bencana::all();
-        $pelaporan = Pelaporan::all();
-
-        return view('dashboardhistori', [
-           'pelaporan' => Pelaporan::all(),
-           
-        ]);
+        return view('dashboardview.table-pelaporan-disetujui', [
+            'report' => Pelaporan::where('status','1')->get(),
+            'title' => 'Approved Report'
+         ]);
     }
 
     /**

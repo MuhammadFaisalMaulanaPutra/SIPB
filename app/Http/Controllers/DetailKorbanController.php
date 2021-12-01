@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bencana;
 use App\Models\DetailKorban;
+use App\Models\Pelaporan;
 use Illuminate\Http\Request;
 
 class DetailKorbanController extends Controller
@@ -12,9 +14,13 @@ class DetailKorbanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        return view('dashboardview.table-korban', [
+            'victim' => DetailKorban::where('FK_Id_laporan', $id)->get(),
+            'bencana' => Pelaporan::find($id)->judul_laporan,
+            'title' => 'Korban'
+        ]);
     }
 
     /**

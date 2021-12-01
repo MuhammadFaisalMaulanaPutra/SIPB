@@ -28,7 +28,7 @@ class DetailKorbanFactory extends Factory
             // 'Umur'=> $this->faker->mt_rand(1,100),
             'Umur'=> mt_rand(1,100),
             'Kondisi'=> $this->faker->boolean(),
-            'FK_Id_laporan' => mt_rand(1,5)
+            'FK_Id_laporan' => mt_rand(1,50)
         ];
     }
 }
