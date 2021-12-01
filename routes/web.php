@@ -38,7 +38,7 @@ Route::get('/login', function () {
     return view('userview.login', [
         'title' => 'Login'
     ]);
-});
+})->name('login');
 
 Route::get('/daftar', function () {
     return view('userview.daftar',[
