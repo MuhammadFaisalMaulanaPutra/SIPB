@@ -23,7 +23,7 @@ class pelaporanFactory extends Factory
     {
         return [
             'judul_laporan' => $this->faker->sentence(3),
-            'isi_laporan' => $this->faker->sentence(3),
+            'isi_laporan' => $this->faker->text(),
             'waktu_bencana'=> $this->faker->time(),
             'status'=> $this->faker->boolean(),
             'FK_Id_user' => mt_rand(1,50),

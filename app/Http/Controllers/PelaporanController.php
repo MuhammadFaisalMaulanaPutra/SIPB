@@ -20,7 +20,29 @@ class PelaporanController extends Controller
     {
         return view('dashboardview.table-pelaporan', [
            'report' => Pelaporan::where('status','0')->get(),
+           'bencana' => Bencana::all(),
+           'kecamatan' => Kecamatan::all(),
            'title' => 'Incoming Report'
+        ]);
+    }
+
+    public function index2()
+    {
+        return view('userview.histori', [
+           'report' => Pelaporan::where('FK_Id_user', auth()->user()->id)->get(),
+           'bencana' => Bencana::all(),
+           'kecamatan' => Kecamatan::all(),
+           'title' => 'My Report'
+        ]);
+    }
+
+    public function latestNews()
+    {
+        return view('userview.welcome', [
+           'report' => Pelaporan::where('status','1') ->orderBy('created_at', 'desc')->limit(5)->get(),
+           'bencana' => Bencana::all(),
+           'kecamatan' => Kecamatan::all(),
+           'title' => 'Home'
         ]);
     }
 
@@ -42,10 +64,10 @@ class PelaporanController extends Controller
         $bencana = Bencana::all();
         $kecamatan = Kecamatan::all();
 
-        return view('userview.welcome', [
+        return view('userview.buatlaporan', [
             'bencana' => $bencana,
             'kecamatan' => $kecamatan,
-            'title' => 'Home'
+            'title' => 'buatlaporan'
         ]);
     }
 
@@ -134,5 +156,21 @@ class PelaporanController extends Controller
             
         ]);
     
+    }
+
+    public function approve($id){
+        DB::table('pelaporan')
+            ->where('id', $id)
+            ->update(['status' => '1']);
+
+        return redirect('/dashboard-table-report')->with('approved','Laporan Disetujui');
+    }
+
+    public function decline($id){
+        DB::table('pelaporan')
+            ->where('id', $id)
+            ->update(['status' => '2']);
+
+        return redirect('/dashboard-table-report')->with('declined','Laporan Ditolak');
     }
 }

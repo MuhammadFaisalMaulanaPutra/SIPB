@@ -5,6 +5,18 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
+    @if (session()->has('approved'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('approved') }}
+        </div>
+    @endif
+
+    @if (session()->has('declined'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('declined') }}
+        </div>
+    @endif
+
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Tables</h1>
 
@@ -43,16 +55,18 @@
                             <th>{{ $reports -> isi_laporan }}</th>
                             <th>{{ $reports -> waktu_bencana }}</th>
                             <th>
-                                <div class= 'd-inline'>
-                                    <form action="" class="d-inline">
-                                        <a href="#" class="btn btn-success btn-circle btn">
-                                            <i class="bi bi-check-lg"></i>
-                                        </a>
+                                <div>
+                                    <form action="report/approve/{{ $reports->id }}" method="post" class="mb-2">
+                                        @csrf
+                                        <button class="btn btn-success btn-icon-split" type='submit'>
+                                            <i class="bi bi-check-lg">Approve</i>
+                                        </button>
                                     </form>
-                                    <form action="" class="d-inline">
-                                        <a href="#" class="btn btn-danger btn-circle btn">
-                                            <i class= "bi bi-x-lg"></i>
-                                        </a>
+                                    <form action="report/decline/{{ $reports->id }}" method="post">
+                                        @csrf
+                                        <button class="btn btn-danger btn-icon-split" type='submit'>
+                                            <i class= "bi bi-x-lg">Decline</i>
+                                        </button>
                                     </form>
                                 </div>
                             </th>

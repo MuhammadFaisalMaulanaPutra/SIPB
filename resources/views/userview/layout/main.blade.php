@@ -21,7 +21,7 @@
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
-
+	
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
 </head>
@@ -45,8 +45,10 @@
 						<ul class="dropdown-menu">
 							<li><a href='artikel'>Daftar Bencana</a></li>
 							<li><a href="#">Pencegahan</a></li>
-							<li><a href='histori'>Histori Laporan</a></li>
-						
+							@auth
+								<li><a href='/laporan'>Buat Laporan</a></li>
+								<li><a href='/histori'>Laporan Saya</a></li>
+							@endauth
 						</ul>
 					</li>
                     @auth

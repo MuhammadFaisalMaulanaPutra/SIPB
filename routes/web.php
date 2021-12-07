@@ -26,7 +26,7 @@ use App\Http\Controllers\RoleController;
 */
 
 //ROUTES DASAR
-Route::get('/', [PelaporanController::class, 'create']);
+Route::get('/', [PelaporanController::class, 'latestNews']);
 
 Route::get('/about', function () {
     return view('userview.about',[
@@ -60,7 +60,9 @@ Route::get('/createuser', function () {
     return view('createuser');
 });
 
-Route::get('/histori', [PelaporanController::class, 'index']) ;
+Route::get('/laporan', [PelaporanController::class, 'create']);
+
+Route::get('/histori', [PelaporanController::class, 'index2']) ;
 
 Route::get('/dashboard',[UserController::class,'index']);
 
@@ -109,3 +111,10 @@ Route::get('/dashboard-table-report', [PelaporanController::class, 'index'])->mi
 Route::get('/dashboard-table-approved', [PelaporanController::class, 'approved'])->middleware('auth');
 
 Route::get('/dashboard-table-approved-korban-{id}', [DetailKorbanController::class, 'index'])->middleware('auth');
+
+
+//===================crud========================
+
+Route::post('/report/approve/{id}', [PelaporanController::class, 'approve'])->middleware('auth');
+
+Route::post('/report/decline/{id}', [PelaporanController::class, 'decline'])->middleware('auth');

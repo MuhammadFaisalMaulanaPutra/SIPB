@@ -38,104 +38,30 @@
 			   Layanan Aspirasi dan Pengaduan Online Rakyat
    Sampaikan Laporan Anda Langsung Kepada Instansi Pemerintah Berwenang
 		   </h3>
-	   </div>
-	   @auth
-	   <hr>
-			 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-			   <div class="panel panel-default">
-				   <div class="panel-body">
-					   <h3 class="thin text-center">Lapor Sigap Bencana</h3>
-					   <p class="text-center text-muted">Laporan anda sangat berguna bagi masyarakat sekitar  </p>
-					   <hr>
-					   
-					   <form action = '/lapor' method ="post">
-						   @csrf
-						   <div class="top-margin">
-							   <label for="ketikJudulLaporanAnda">Ketik Judul Laporan Anda <span class="text-danger">*</span></label>
-							   <input class="form-control" id="ketikJudulLaporanAnda" type="text" name="judul_laporan" placeholder="Ketik Judul Laporan Anda" data-sb-validations="required" />
-							   
-							   
-						   </div>
-						   <div class="top-margin">
-							   <label for="ketikIsiLaporanAnda">Ketik Isi Laporan Anda <span class="text-danger">*</span></label>
-							   <textarea class="form-control" id="ketikIsiLaporanAnda" type="text" name="isi_laporan" placeholder="Ketik Isi Laporan Anda" style="height: 10rem;" data-sb-validations="required"></textarea>
-							   
-							   
-							   
-						   </div>
-   
-						   <div class="top-margin">
-							   <label for="ketikJenisBencana">Pilih Bencana <span class="text-danger">*</span></label>
-							   <select class="form-control" name="id_bencana" required>
-									<option value='' disabled selected hidden>Pilih Bencana</option>
-									   @foreach ($bencana as $bencanas)
-										   <option value={{ $bencanas->id_bencana }} >{{ $bencanas->Nama_bencana }}</option>
-									   @endforeach
-							   </select>
-			   
-						   </div>
-   
-						   <div class="top-margin">
-							   <label for="ketikJenisBencana">Pilih Kecamatan <span class="text-danger">*</span></label>
-							   <select class="form-control" name="id_bencana" required>
-									<option value='' disabled selected hidden>Pilih Kecamatan</option>
-									   @foreach ($kecamatan as $kecamatans)
-										   <option value={{ $kecamatans->id }} >{{ $kecamatans->Nama_Kecamatan }}</option>
-									   @endforeach
-							   </select>
-						   
-						   </div>
-   
-						   <div class="top-margin">
-							   <label for="tanggalKejadian">Tanggal Kejadian <span class="text-danger">*</span></label>
-							   <input class="form-control" type="text" name="tanggal" placeholder="Tanggal Kejadian" onfocus="(this.type='date')" required/>
-							   
-						   
-					   
-						   </div>
-   
-						   <div class="top-margin">
-							   <label for="tanggalKejadian">Waktu Kejadian <span class="text-danger">*</span></label>
-							   <input class="form-control" type="time" name="waktu" placeholder="Tanggal Kejadian"  required/>
-							   
-						   
-					   
-						   </div>
-						   
-						   
-						   
-   
-						   
-   
-						   <hr>
-   
-						   <div class="row">
-							   <div class="col-lg-8">
-								   <b><a href="">Upload Lampiran</a></b>
-							   </div>
-							   
-							   <div class="col-lg-4 text-right">
-								   <button class="btn btn-action" type="submit">Kirim</button>
-							   </div>
-							   </div>
-						   </div>
-					   </form>
-				   </div>
-			   </div>
-   
-		   </div>
-	   
-   
 		   <hr>
-		   
-	   @endauth
-   
-   
-   
-   
-   
-			 
-   
+	   </div>
+		<div class="container">
+			<div class="text-center">
+				<h2>Latest News</h2>
+			</div>
+			<h1></h1>
+			
+			<ul class="list-unstyled list-spaces">
+				<div class="card mb-3" style="max-width: 800px;">
+					@foreach ($report as $reports)
+						<div class="card w-100">
+							<div class="card-body">
+							<h3 class="card-title">{{ $reports->judul_laporan }}</h3>
+							<p class="card-text">{{ $reports->isi_laporan }}</p>
+							<a href="#">Baca Selengkapnya >></a>
+							</div>
+						</div>
+					@endforeach
+					
+				</div>
+			</ul>
+		</div>
+	   
    </div>	<!-- /container -->
 	   <div class="container">
 	 <div class="row">
