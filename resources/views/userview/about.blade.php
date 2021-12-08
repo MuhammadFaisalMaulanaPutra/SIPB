@@ -35,23 +35,26 @@
 		</article>
 		<!-- /Article -->
 		
-		<!-- Sidebar -->
+		{{-- <!-- Sidebar -->
 		<aside class="col-sm-4 sidebar sidebar-right">
 
 			<div class="panel">
 				<h4>Latest News</h4>
 				
 				<ul class="list-unstyled list-spaces">
-					<li><a href="">Responsive Design</a><br><span class="small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, laborum.</span></li>
-					<li><a href="">HTML5, CSS3 and JavaScript</a><br><span class="small text-muted">Consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam</span></li>
-					<li><a href="">Bootstrap</a><br><span class="small text-muted">Eveniet, consequuntur eius repellendus eos aliquid molestiae ea</span></li>
-					<li><a href="">Clean Template</a><br><span class="small text-muted">Sed, mollitia earum debitis est itaque esse reiciendis amet cupiditate.</span></li>
-					<li><a href="">Premium Quality</a><br><span class="small text-muted">Voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia.</span></li>
+					@foreach ($report as $reports)
+						<div class="card w-100">
+							<div class="card-body">
+							<h4 class="card-title"><a href="">{{ $reports->judul_laporan }}</a></h4>
+							<p class="card-text">{{ $reports->isi_laporan }}</p>
+							</div>
+						</div>
+					@endforeach
 				</ul>
 			</div>
 
 		</aside>
-		<!-- /Sidebar -->
+		<!-- /Sidebar --> --}}
 
 	</div>
 </div>	

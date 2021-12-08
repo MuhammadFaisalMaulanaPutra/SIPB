@@ -51,9 +51,9 @@
 					@foreach ($report as $reports)
 						<div class="card w-100">
 							<div class="card-body">
-							<h3 class="card-title">{{ $reports->judul_laporan }}</h3>
+							<h3 class="card-title"><a href="">{{ $reports->judul_laporan }}</a></h3>
+							<h6>-{{ $reports->bencana->Nama_bencana }}- by: {{ $reports->user->nama_user }} </h6>
 							<p class="card-text">{{ $reports->isi_laporan }}</p>
-							<a href="#">Baca Selengkapnya >></a>
 							</div>
 						</div>
 					@endforeach

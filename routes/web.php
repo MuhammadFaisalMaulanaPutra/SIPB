@@ -30,6 +30,7 @@ Route::get('/', [PelaporanController::class, 'latestNews']);
 
 Route::get('/about', function () {
     return view('userview.about',[
+        'report' => Pelaporan::where('status','1') ->orderBy('tgl_bencana', 'desc')->limit(3)->get(),
         'title' => 'About'
     ]);
 });

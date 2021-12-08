@@ -19,7 +19,7 @@ class PelaporanController extends Controller
     public function index()
     {
         return view('dashboardview.table-pelaporan', [
-           'report' => Pelaporan::where('status','0')->get(),
+           'report' => Pelaporan::where('status','0')->orderBy('tgl_bencana', 'desc')->get(),
            'bencana' => Bencana::all(),
            'kecamatan' => Kecamatan::all(),
            'title' => 'Incoming Report'
@@ -39,7 +39,7 @@ class PelaporanController extends Controller
     public function latestNews()
     {
         return view('userview.welcome', [
-           'report' => Pelaporan::where('status','1') ->orderBy('created_at', 'desc')->limit(5)->get(),
+           'report' => Pelaporan::where('status','1') ->orderBy('tgl_bencana', 'desc')->limit(5)->get(),
            'bencana' => Bencana::all(),
            'kecamatan' => Kecamatan::all(),
            'title' => 'Home'
@@ -79,12 +79,13 @@ class PelaporanController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('pelaporans')->insert([
-        'FK_id_bencana' => $request->id_bencana,
-        'FK_id_user' => $request->id_bencana,
+        DB::table('pelaporan')->insert([
+        'FK_Id_bencana' => $request->id_bencana,
+        'FK_Id_kecamatan' => $request->id_kecamatan,
+        'FK_Id_user' => $request->id_pelapor,
         'judul_laporan' => $request->judul_laporan, 
         'isi_laporan' => $request->isi_laporan,
-        'FK_id_kecamatan' => $request->id_bencana,
+        'tgl_bencana' => $request->tanggal,
         'waktu_bencana' => $request ->waktu,
         'status' => 0,
         ]);

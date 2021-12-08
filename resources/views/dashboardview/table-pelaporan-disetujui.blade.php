@@ -18,6 +18,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>Tanggal Kejadian</th>
                             <th>Pelapor</th>
                             <th>Bencana</th>
                             <th>Kecamatan</th>
@@ -37,6 +38,7 @@
                     <tbody>
                         @foreach ($report as $reports)
                         <tr>
+                            <th>{{ $reports -> tgl_bencana }}</th>
                             <th>{{ $reports -> user -> nama_user }}</th>
                             <th>{{ $reports -> bencana -> Nama_bencana }}</th>
                             <th>{{ $reports -> kecamatan -> Nama_Kecamatan }}</th>

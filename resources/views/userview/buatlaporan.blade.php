@@ -27,10 +27,14 @@
 					   <form action = '/lapor' method ="post">
 						   @csrf
 						   <div class="top-margin">
+							   <label for="pelapor">Pelapor</label>
+							   <select name="id_pelapor" id="id_pelapor">
+								   <option value={{ auth()->user()->id }}>{{ auth()->user()->nama_user }}</option>
+							   </select>
+						   </div>
+						   <div class="top-margin">
 							   <label for="ketikJudulLaporanAnda">Ketik Judul Laporan Anda <span class="text-danger">*</span></label>
 							   <input class="form-control" id="ketikJudulLaporanAnda" type="text" name="judul_laporan" placeholder="Ketik Judul Laporan Anda" data-sb-validations="required" />
-							   
-							   
 						   </div>
 						   <div class="top-margin">
 							   <label for="ketikIsiLaporanAnda">Ketik Isi Laporan Anda <span class="text-danger">*</span></label>
@@ -53,7 +57,7 @@
    
 						   <div class="top-margin">
 							   <label for="ketikJenisBencana">Pilih Kecamatan <span class="text-danger">*</span></label>
-							   <select class="form-control" name="id_bencana" required>
+							   <select class="form-control" name="id_kecamatan" required>
 									<option value='' disabled selected hidden>Pilih Kecamatan</option>
 									   @foreach ($kecamatan as $kecamatans)
 										   <option value={{ $kecamatans->id }} >{{ $kecamatans->Nama_Kecamatan }}</option>
