@@ -85,9 +85,9 @@ Route::get ('/edituser/{id}',[UserController::class,'show_edit']);
 
 Route::put ('/updateuser/{id}',[UserController::class,'update']);
 
-Route::get ('/edithistori/{id}',[PelaporanController::class,'show_edit']);
+Route::get ('/histori-{id}',[PelaporanController::class,'edit']);
 
-Route::put ('/updatehistori/{id}',[PelaporanController::class,'update']);
+Route::put ('/edithistori/{id}',[PelaporanController::class,'update']);
 
 Route::delete('/dashboard/delete/{id}',[UserController::class,'destroy']);
 
@@ -116,6 +116,22 @@ Route::get('/dashboard-table-approved-korban-{id}', [DetailKorbanController::cla
 
 //===================crud========================
 
+
 Route::post('/report/approve/{id}', [PelaporanController::class, 'approve'])->middleware('auth');
 
 Route::post('/report/decline/{id}', [PelaporanController::class, 'decline'])->middleware('auth');
+
+Route::delete('/histori/delete/{id}', [PelaporanController::class, 'destroy'])->middleware('auth');
+
+
+
+//===================Store=======================
+Route::post('/create-provinsi', [ProvinsiController::class, 'store'])->middleware('auth');
+//===================Update======================
+
+//===================Destroy=====================
+Route::delete('dashboard-table-provinsi-{id}', [ProvinsiController::class, 'destroy'])->middleware('auth');
+//===================Create======================
+Route::get('/form-create-provinsi', [ProvinsiController::class, 'create'])->middleware('auth');
+//===================Edit========================
+Route::get('/form-edit-provinsi-{id}', [ProvinsiController::class, 'edit'])->middleware('auth');

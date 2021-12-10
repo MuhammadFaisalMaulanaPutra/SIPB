@@ -45,14 +45,14 @@
 				<h2>Latest News</h2>
 			</div>
 			<h1></h1>
-			
+			<hr>
 			<ul class="list-unstyled list-spaces">
 				<div class="card mb-3" style="max-width: 800px;">
 					@foreach ($report as $reports)
 						<div class="card w-100">
 							<div class="card-body">
 							<h3 class="card-title"><a href="">{{ $reports->judul_laporan }}</a></h3>
-							<h6>-{{ $reports->bencana->Nama_bencana }}- by: {{ $reports->user->nama_user }} </h6>
+							<h6>{{ $reports->bencana->Nama_bencana }} | by: {{ $reports->user->nama_user }} | {{ $reports->tgl_bencana }}</h6>
 							<p class="card-text">{{ $reports->isi_laporan }}</p>
 							</div>
 						</div>
@@ -61,6 +61,7 @@
 				</div>
 			</ul>
 		</div>
+		<hr>
 	   
    </div>	<!-- /container -->
 	   <div class="container">

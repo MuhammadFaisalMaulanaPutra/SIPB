@@ -11,6 +11,8 @@ class Provinsi extends Model
     
     protected $table = 'provinsi';
 
+    protected $guarded = ['id'];
+
     public function kota()
     {
         return $this->hasMany('App/Kota','FK_ID_PROVINSI','id_provinsi');

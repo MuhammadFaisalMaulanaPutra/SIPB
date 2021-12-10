@@ -20,6 +20,8 @@ class UserController extends Controller
 
     public function create(Request $request){
 
+        
+
         User::create([
             'nama_user' => $request->nama_user,
             'tgl_lahir' => $request->tgl_lahir,

@@ -19,7 +19,7 @@ class CreatePelaporan extends Migration
             $table->foreignId('FK_Id_bencana')->constrained('bencana','id_bencana');
             $table->foreignId('FK_Id_kecamatan')->constrained('kecamatan');
             $table->string('judul_laporan');
-            $table->string('isi_laporan');
+            $table->text('isi_laporan');
             $table->date('tgl_bencana');
             $table->time('waktu_bencana');
             $table->string('status');

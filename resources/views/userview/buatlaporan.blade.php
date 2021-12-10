@@ -34,52 +34,80 @@
 						   </div>
 						   <div class="top-margin">
 							   <label for="ketikJudulLaporanAnda">Ketik Judul Laporan Anda <span class="text-danger">*</span></label>
-							   <input class="form-control" id="ketikJudulLaporanAnda" type="text" name="judul_laporan" placeholder="Ketik Judul Laporan Anda" data-sb-validations="required" />
+							   <input class="form-control @error('judul_laporan') is-invalid @enderror" id="ketikJudulLaporanAnda" type="text" name="judul_laporan" placeholder="Ketik Judul Laporan Anda" data-sb-validations="required" />
+							   	@error('judul_laporan')
+                                    <div class="invalid-feedback text-danger">
+                            	        {{ $message }}
+                                	</div>
+                                @enderror
 						   </div>
 						   <div class="top-margin">
 							   <label for="ketikIsiLaporanAnda">Ketik Isi Laporan Anda <span class="text-danger">*</span></label>
-							   <textarea class="form-control" id="ketikIsiLaporanAnda" type="text" name="isi_laporan" placeholder="Ketik Isi Laporan Anda" style="height: 10rem;" data-sb-validations="required"></textarea>
-							   
-							   
-							   
+							   <textarea class="form-control @error('isi_laporan') is-invalid @enderror" id="ketikIsiLaporanAnda" type="text" name="isi_laporan" placeholder="Ketik Isi Laporan Anda" style="height: 10rem;" data-sb-validations="required"></textarea>
+							   @error('isi_laporan')
+                                    <div class="invalid-feedback text-danger">
+                            	        {{ $message }}
+                                	</div>
+                                @enderror
 						   </div>
    
 						   <div class="top-margin">
 							   <label for="ketikJenisBencana">Pilih Bencana <span class="text-danger">*</span></label>
-							   <select class="form-control" name="id_bencana" required>
+							   <select class="form-control @error('id_bencana') is-invalid @enderror" name="id_bencana" required>
 									<option value='' disabled selected hidden>Pilih Bencana</option>
-									   @foreach ($bencana as $bencanas)
-										   <option value={{ $bencanas->id_bencana }} >{{ $bencanas->Nama_bencana }}</option>
-									   @endforeach
+									@foreach ($bencana as $bencanas)
+										@if (old('id_bencana') == $bencanas->id_bencana)
+											<option value={{ $bencanas->id_bencana }} selected>{{ $bencanas->Nama_bencana }}</option>
+										@else
+											<option value={{ $bencanas->id_bencana }} >{{ $bencanas->Nama_bencana }}</option>
+										@endif
+									@endforeach
 							   </select>
-			   
+							   	@error('id_bencana')
+                                    <div class="invalid-feedback text-danger">
+                            	        {{ $message }}
+                                	</div>
+                                @enderror
 						   </div>
    
 						   <div class="top-margin">
 							   <label for="ketikJenisBencana">Pilih Kecamatan <span class="text-danger">*</span></label>
-							   <select class="form-control" name="id_kecamatan" required>
+							   <select class="form-control @error('id_kecamatan') is-invalid @enderror" name="id_kecamatan" required>
 									<option value='' disabled selected hidden>Pilih Kecamatan</option>
-									   @foreach ($kecamatan as $kecamatans)
-										   <option value={{ $kecamatans->id }} >{{ $kecamatans->Nama_Kecamatan }}</option>
-									   @endforeach
+									@foreach ($kecamatan as $kecamatans)
+										@if (old('id_kecamatan') == $kecamatans->id)
+											<option value={{ $kecamatans->id }} selected>{{ $kecamatans->Nama_Kecamatan }}</option>
+										@else
+											<option value={{ $kecamatans->id }} >{{ $kecamatans->Nama_Kecamatan }}</option>
+										@endif
+							   		@endforeach
 							   </select>
+							   	@error('id_kecamatan')
+                                    <div class="invalid-feedback text-danger">
+                            	        {{ $message }}
+                                	</div>
+                                @enderror
 						   
 						   </div>
    
 						   <div class="top-margin">
 							   <label for="tanggalKejadian">Tanggal Kejadian <span class="text-danger">*</span></label>
-							   <input class="form-control" type="text" name="tanggal" placeholder="Tanggal Kejadian" onfocus="(this.type='date')" required/>
-							   
-						   
-					   
+							   <input class="form-control @error('tanggal') is-invalid @enderror" type="text" name="tanggal" placeholder="Tanggal Kejadian" onfocus="(this.type='date')" value='{{ old('tanggal') }}' required/>
+							    @error('tanggal')
+                                    <div class="invalid-feedback text-danger">
+                            	        {{ $message }}
+                                	</div>
+                                @enderror
 						   </div>
    
 						   <div class="top-margin">
 							   <label for="tanggalKejadian">Waktu Kejadian <span class="text-danger">*</span></label>
-							   <input class="form-control" type="time" name="waktu" placeholder="Tanggal Kejadian"  required/>
-							   
-						   
-					   
+							   <input class="form-control @error('waktu') is-invalid @enderror" type="time" name="waktu" placeholder="Tanggal Kejadian" value='{{ old('waktu') }}'  required/>
+							    @error('waktu')
+                                    <div class="invalid-feedback text-danger">
+                            	        {{ $message }}
+                                	</div>
+                                @enderror
 						   </div>
 						   
 						   
@@ -91,7 +119,7 @@
    
 						   <div class="row">
 							   <div class="col-lg-8">
-								   <b><a href="">Upload Lampiran</a></b>
+								   
 							   </div>
 							   
 							   <div class="col-lg-4 text-right">

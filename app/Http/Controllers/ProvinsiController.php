@@ -6,6 +6,7 @@ use App\Models\Bencana;
 use App\Models\Pelaporan;
 use App\Models\Provinsi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProvinsiController extends Controller
 {
@@ -30,7 +31,9 @@ class ProvinsiController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboardview.create.provinsi',[
+            'title' => 'Provinsi',
+        ]);
     }
 
     /**
@@ -41,7 +44,17 @@ class ProvinsiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama_provinsi' => 'required|max:50',
+        ]);
+
+        DB::table('provinsi')->insert([
+            'nama_provinsi' => $validatedData['nama_provinsi'],
+        ]);
+
+        $request->session()->flash('success','Provinsi Berhasil Ditambahkan');
+
+        return redirect('/dashboard-table-provinsi');
     }
 
     /**
@@ -61,9 +74,12 @@ class ProvinsiController extends Controller
      * @param  \App\Models\Provinsi  $provinsi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Provinsi $provinsi)
+    public function edit($id)
     {
-        //
+        return view('dashboardview.edit.provinsi',[
+            'title' => 'Provinsi',
+            'province' => Provinsi::find($id)
+        ]);
     }
 
     /**
@@ -84,17 +100,12 @@ class ProvinsiController extends Controller
      * @param  \App\Models\Provinsi  $provinsi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Provinsi $provinsi)
+    public function destroy(Request $request,$id)
     {
-        //
-    }
+        Provinsi::find($id)->delete();
 
-    public function show_edit($id){
-        // dd(User::findOrFail($id));
-        return view ( 'edituser', [
-            'user'=> Pelaporan::findOrFail($id)
-            // 'user'=> User::where('id',$id)->get()
-            
-        ]);
-}
+        $request->session()->flash('deleteProv','Data Provinsi Berhasil Di Hapus');
+
+        return redirect('/dashboard-table-provinsi');
+    }
 }

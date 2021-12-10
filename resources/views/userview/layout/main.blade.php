@@ -131,7 +131,7 @@
 					</div>
 
 					<div class="col-md-3 panel">
-						<h3 class="panel-title">Follow me</h3>
+						<h3 class="panel-title">Follow Us</h3>
 						<div class="panel-body">
 							<p class="follow-me-icons">
 								<a href=""><i class="fa fa-twitter fa-2"></i></a>

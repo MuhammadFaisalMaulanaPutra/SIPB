@@ -7,6 +7,21 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+    <div class='mb-3'>
+        <a href="{{ url('/form-create-provinsi') }}">
+            <button type="button" class="btn btn-primary">Tambah Provinsi</button>
+        </a>
+    </div>
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session()->has('deleteProv'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('deleteProv') }}
+        </div>
+    @endif
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -19,6 +34,7 @@
                     <thead>
                         <tr>
                             <th>Nama Provinsi</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     {{-- <tfoot>
@@ -31,6 +47,26 @@
                         @foreach ($province as $provinces)
                         <tr>
                             <th>{{ $provinces -> nama_provinsi }}</th>
+                            <th>
+                                <div class="d-inline">
+                                    <a href="{{ url('/form-edit-provinsi-') }}{{ $provinces->id }}" class="btn btn-warning btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </span>
+                                        <span class="text">Edit</span>
+                                    </a>
+                                    <form action="/dashboard-table-provinsi-{{ $provinces->id }}" method="post" class='d-inline'>
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-danger btn-icon-split" type='submit'>
+                                            <span class="icon text-white-50">
+                                                <i class= "bi bi-x-lg"></i>
+                                            </span>
+                                            <span class="text">Hapus</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </th>
                         </tr> 
                         @endforeach
                     </tbody>

@@ -29,7 +29,7 @@ class PelaporanController extends Controller
     public function index2()
     {
         return view('userview.histori', [
-           'report' => Pelaporan::where('FK_Id_user', auth()->user()->id)->get(),
+           'report' => Pelaporan::where('FK_Id_user', auth()->user()->id)->orderBy('tgl_bencana', 'desc')->get(),
            'bencana' => Bencana::all(),
            'kecamatan' => Kecamatan::all(),
            'title' => 'My Report'
@@ -67,7 +67,7 @@ class PelaporanController extends Controller
         return view('userview.buatlaporan', [
             'bencana' => $bencana,
             'kecamatan' => $kecamatan,
-            'title' => 'buatlaporan'
+            'title' => 'Laporkan'
         ]);
     }
 
@@ -79,15 +79,26 @@ class PelaporanController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validatedData = $request->validate([
+            'id_bencana'    => 'required',
+            'id_kecamatan'  => 'required',
+            'id_pelapor'    => 'required',
+            'judul_laporan' => 'required',
+            'isi_laporan'   => 'required',
+            'tanggal'       => 'required',
+            'waktu'         => 'required',
+        ]);
+
         DB::table('pelaporan')->insert([
-        'FK_Id_bencana' => $request->id_bencana,
-        'FK_Id_kecamatan' => $request->id_kecamatan,
-        'FK_Id_user' => $request->id_pelapor,
-        'judul_laporan' => $request->judul_laporan, 
-        'isi_laporan' => $request->isi_laporan,
-        'tgl_bencana' => $request->tanggal,
-        'waktu_bencana' => $request ->waktu,
-        'status' => 0,
+        'FK_Id_bencana'     => $validatedData['id_bencana'],
+        'FK_Id_kecamatan'   => $validatedData['id_kecamatan'],
+        'FK_Id_user'        => $validatedData['id_pelapor'],
+        'judul_laporan'     => $validatedData['judul_laporan'], 
+        'isi_laporan'       => $validatedData['isi_laporan'],
+        'tgl_bencana'       => $validatedData['tanggal'],
+        'waktu_bencana'     => $validatedData['waktu'],
+        'status'            => 0,
         ]);
         
         return redirect('/histori');
@@ -110,9 +121,17 @@ class PelaporanController extends Controller
      * @param  \App\Models\Pelaporan  $pelaporan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pelaporan $pelaporan)
+    public function edit($id)
     {
-        //
+        $bencana = Bencana::all();
+        $kecamatan = Kecamatan::all();
+
+        return view('userview.editlaporan', [
+            'report' => Pelaporan::find($id),
+            'bencana' => $bencana,
+            'kecamatan' => $kecamatan,
+            'title' => $id
+        ]);
     }
 
     /**
@@ -122,18 +141,29 @@ class PelaporanController extends Controller
      * @param  \App\Models\Pelaporan  $pelaporan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pelaporan $pelaporan)
+    public function update(Request $request)
     {
+        $validatedData = $request->validate([
+            'id_bencana'    => 'required',
+            'id_kecamatan'  => 'required',
+            'id_pelapor'    => 'required',
+            'judul_laporan' => 'required',
+            'isi_laporan'   => 'required',
+            'tanggal'       => 'required',
+            'waktu'         => 'required',
+        ]);
+
         DB::table('pelaporan')->where('id',$request->id)->update([
-            'FK_id_bencana' => $request->id_bencana,
-            'FK_id_user' => $request->id_bencana,
-            'judul_laporan' => $request->judul_laporan, 
-            'isi_laporan' => $request->isi_laporan,
-            'FK_id_kecamatan' => $request->id_bencana,
-            'waktu_bencana' => $request ->waktu,
-            'status' => 0,
-            ]);
-            return redirect('/dashboardhistori');
+            'FK_Id_bencana'     => $validatedData['id_bencana'],
+            'FK_Id_kecamatan'   => $validatedData['id_kecamatan'],
+            'FK_Id_user'        => $validatedData['id_pelapor'],
+            'judul_laporan'     => $validatedData['judul_laporan'], 
+            'isi_laporan'       => $validatedData['isi_laporan'],
+            'tgl_bencana'       => $validatedData['tanggal'],
+            'waktu_bencana'     => $validatedData['waktu'],
+            'status'            => 0,
+        ]);
+        return redirect('/histori');
     }
 
     /**
@@ -147,8 +177,9 @@ class PelaporanController extends Controller
         $pelaporan = Pelaporan::find($id);
         $pelaporan->delete();
 
-        return redirect('/dashboardhistori');
+        return redirect('/histori');
     }
+
     public function show_edit($id){
         // dd(User::findOrFail($id));
         return view ( 'edithistori', [
