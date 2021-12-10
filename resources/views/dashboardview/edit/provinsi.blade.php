@@ -9,7 +9,8 @@
                     <div class="card shadow-lg border-0 rounded-lg mt-5">
                         <div class="card-header"><h3 class="text-center font-weight-light my-4">Edit {{ $title }}</h3></div>
                         <div class="card-body">
-                            <form action="/create-provinsi" method="post">
+                            <form action="/edit-provinsi-{{ $province->id }}" method="post">
+                                @method('put')
                                 @csrf
                                 <div class="row mb-2">
                                     <div class="col-md-6">
@@ -22,7 +23,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-4 mb-0">
-                                    <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">Tambah</button></div>
+                                    <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">Perbarui</button></div>
                                 </div>
                             </form>
                         </div>

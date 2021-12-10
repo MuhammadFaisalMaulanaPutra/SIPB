@@ -13,6 +13,7 @@ use App\Models\Pelaporan;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\RoleController;
+use Database\Factories\provinsiFactory;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,7 +129,7 @@ Route::delete('/histori/delete/{id}', [PelaporanController::class, 'destroy'])->
 //===================Store=======================
 Route::post('/create-provinsi', [ProvinsiController::class, 'store'])->middleware('auth');
 //===================Update======================
-
+Route::put('/edit-provinsi-{id}', [ProvinsiController::class, 'update'])->middleware('auth');
 //===================Destroy=====================
 Route::delete('dashboard-table-provinsi-{id}', [ProvinsiController::class, 'destroy'])->middleware('auth');
 //===================Create======================

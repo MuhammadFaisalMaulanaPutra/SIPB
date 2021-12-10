@@ -89,9 +89,19 @@ class ProvinsiController extends Controller
      * @param  \App\Models\Provinsi  $provinsi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provinsi $provinsi)
+    public function update(Request $request)
     {
-        
+        $validatedData = $request->validate([
+            'nama_provinsi' => 'required|max:50'
+        ]);
+
+        DB::table('provinsi')->where('id',$request->id)->update([
+            'nama_provinsi' => $validatedData['nama_provinsi']
+        ]);
+
+        $request->session()->flash('updateProv','Provinsi Berhasil Diperbarui');
+
+        return redirect('/dashboard-table-provinsi');
     }
 
     /**

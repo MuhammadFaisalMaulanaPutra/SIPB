@@ -22,6 +22,11 @@
             {{ session('deleteProv') }}
         </div>
     @endif
+    @if (session()->has('updateProv'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('updateProv') }}
+        </div>
+    @endif
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
