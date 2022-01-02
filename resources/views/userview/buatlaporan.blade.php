@@ -24,7 +24,7 @@
 					   <p class="text-center text-muted">Laporan anda sangat berguna bagi masyarakat sekitar  </p>
 					   <hr>
 					   
-					   <form action = '/lapor' method ="post">
+					   <form action = '/lapor' method ="post" enctype="multipart/form-data">
 						   @csrf
 						   <div class="top-margin">
 							   <label for="pelapor">Pelapor</label>
@@ -110,7 +110,18 @@
                                 @enderror
 						   </div>
 						   
-						   
+						   <div class="top-margin">
+							<label for="image" class="form-label">Upload Lampiran</label>
+							<input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image">
+							@error('image')
+
+                                    <div class="invalid-feedback text-danger">
+                            	        {{ $message }}
+                                	</div>
+                                @enderror
+						   </div>
+						
+						</div>
 						   
    
 						   

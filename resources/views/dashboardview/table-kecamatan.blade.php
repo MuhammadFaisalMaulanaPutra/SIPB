@@ -7,7 +7,21 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-
+    <div class='mb-3'>
+        <a href="{{ url('/form-create-kecamatan') }}">
+            <button type="button" class="btn btn-primary">Tambah Kecamatan</button>
+        </a>
+    </div>
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session()->has('update'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('update') }}
+        </div>
+    @endif
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -21,6 +35,7 @@
                             <th>Kecamatan</th>
                             <th>Kota</th>
                             <th>Provinsi</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     {{-- <tfoot>
@@ -35,6 +50,13 @@
                             <th>{{ $districts -> Nama_Kecamatan }}</th>
                             <th>{{ $districts -> kota -> nama_kota }}</th>
                             <th>{{ $districts -> kota -> provinsi -> nama_provinsi }}</th>
+                            <th>
+                                <div class="d-inline">
+                                    <a href="{{ url('/form-edit-kecamatan-') }}{{ $districts->id }}" class="btn btn-warning">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </a>
+                                </div>
+                            </th>
                         </tr> 
                         @endforeach
                     </tbody>

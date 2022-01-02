@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
@@ -27,7 +28,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboardview.create.role', [
+            'title'     => 'Role'
+        ]);
     }
 
     /**
@@ -38,7 +41,17 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'role' => 'required|max:50',
+        ]);
+
+        DB::table('role')->insert([
+            'Role' => $validatedData['role'],
+        ]);
+
+        $request->session()->flash('success','Role Berhasil Ditambahkan');
+
+        return redirect('/dashboard-table-role');
     }
 
     /**
@@ -58,9 +71,12 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
-        //
+        return view('dashboardview.edit.role', [
+            'role'      => Role::find($id),
+            'title'     => 'Role'
+        ]);
     }
 
     /**
@@ -70,9 +86,19 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama_role' => 'required',
+        ]);
+
+        DB::table('role')->where('id',$request->id)->update([
+            'Role' => $validatedData['nama_role'],
+        ]);
+
+        $request->session()->flash('Update','Role Berhasil Diperbarui');
+
+        return redirect('/dashboard-table-role');
     }
 
     /**

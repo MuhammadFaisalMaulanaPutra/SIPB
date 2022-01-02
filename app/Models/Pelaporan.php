@@ -29,7 +29,7 @@ class Pelaporan extends Model
 
     public function bencana()
     {
-        return $this->belongsTo ( Bencana::class,'FK_Id_bencana','id_bencana');
+        return $this->belongsTo ( Bencana::class,'FK_Id_bencana','id');
     }
 
     public function detail_korban()

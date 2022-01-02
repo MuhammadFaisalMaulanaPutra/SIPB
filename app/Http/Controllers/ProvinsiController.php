@@ -99,7 +99,7 @@ class ProvinsiController extends Controller
             'nama_provinsi' => $validatedData['nama_provinsi']
         ]);
 
-        $request->session()->flash('updateProv','Provinsi Berhasil Diperbarui');
+        $request->session()->flash('update','Provinsi Berhasil Diperbarui');
 
         return redirect('/dashboard-table-provinsi');
     }
@@ -112,10 +112,6 @@ class ProvinsiController extends Controller
      */
     public function destroy(Request $request,$id)
     {
-        Provinsi::find($id)->delete();
-
-        $request->session()->flash('deleteProv','Data Provinsi Berhasil Di Hapus');
-
-        return redirect('/dashboard-table-provinsi');
+        //
     }
 }

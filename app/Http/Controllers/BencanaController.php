@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bencana;
+use App\Models\Kategori_Bencana;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BencanaController extends Controller
 {
@@ -27,7 +29,10 @@ class BencanaController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboardview.create.bencana', [
+            'category'    => Kategori_Bencana::all(),
+            'title'     => 'Bencana'
+        ]);
     }
 
     /**
@@ -38,7 +43,19 @@ class BencanaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'id_katben'    => 'required',
+            'nama_bencana' => 'required'
+        ]);
+
+        DB::table('bencana')->insert([
+            'FK_ID_kategori_bencana'    => $validatedData['id_katben'],
+            'nama_bencana'            => $validatedData['nama_bencana']
+        ]);
+
+        $request->session()->flash('success','Bencana Berhasil Ditambahkan');
+
+        return redirect('/dashboard-table-bencana');
     }
 
     /**
@@ -58,30 +75,46 @@ class BencanaController extends Controller
      * @param  \App\Models\Bencana  $bencana
      * @return \Illuminate\Http\Response
      */
-    public function edit(Bencana $bencana)
-    {
-        //
+    public function edit($id){
+
+        return view('dashboardview.edit.bencana', [
+            'bencana'      => Bencana::find($id),
+            'category'     => Kategori_Bencana::all(),
+            'title'        => 'Bencana'
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Bencana  $bencana
+     * @param  \App\Models\Kota  $kota
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bencana $bencana)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'id_katben'    => 'required',
+            'nama_bencana' => 'required'
+        ]);
+
+        DB::table('bencana')->where('id',$request->id)->update([
+            'FK_ID_kategori_bencana'    => $validatedData['id_katben'],
+            'nama_bencana'            => $validatedData['nama_bencana']
+        ]);
+
+        $request->session()->flash('update','Bencana Berhasil DiPerbarui');
+
+        return redirect('/dashboard-table-bencana');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Bencana  $bencana
+     * @param  \App\Models\Kota  $kota
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bencana $bencana)
+    public function destroy(Request $request,$id)
     {
         //
     }

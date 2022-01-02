@@ -30,14 +30,14 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>No.</th>
                             <th>Tanggal Kejadian</th>
                             <th>Pelapor</th>
                             <th>Bencana</th>
                             <th>Kecamatan</th>
                             <th>Judul Laporan</th>
-                            <th>Isi Laporan</th>
                             <th>Waktu Bencana</th>
-                            <th>Approve</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     {{-- <tfoot>
@@ -49,25 +49,28 @@
                     <tbody>
                         @foreach ($report as $reports)
                         <tr>
+                            <th>{{ $counter++ }}</th>
                             <th>{{ $reports -> tgl_bencana }}</th>
                             <th>{{ $reports -> user -> nama_user }}</th>
                             <th>{{ $reports -> bencana -> Nama_bencana }}</th>
                             <th>{{ $reports -> kecamatan -> Nama_Kecamatan }}</th>
                             <th>{{ $reports -> judul_laporan }}</th>
-                            <th>{{ $reports -> isi_laporan }}</th>
                             <th>{{ $reports -> waktu_bencana }}</th>
                             <th>
-                                <div>
-                                    <form action="report/approve/{{ $reports->id }}" method="post" class="mb-2">
+                                <div class="d-inline">
+                                    <a href="dashboard-table-report-detail-{{ $reports->id }}" class="btn btn-info">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </a>
+                                    <form action="report/approve/{{ $reports->id }}" method="post" class="d-inline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Approve">
                                         @csrf
-                                        <button class="btn btn-success btn-icon-split" type='submit'>
-                                            <i class="bi bi-check-lg">Approve</i>
+                                        <button class="btn btn-success" type='submit'>
+                                            <i class="bi bi-check-lg"></i>
                                         </button>
                                     </form>
-                                    <form action="report/decline/{{ $reports->id }}" method="post">
+                                    <form action="report/decline/{{ $reports->id }}" method="post" class="d-inline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Decline">
                                         @csrf
-                                        <button class="btn btn-danger btn-icon-split" type='submit'>
-                                            <i class= "bi bi-x-lg">Decline</i>
+                                        <button class="btn btn-danger" type='submit'>
+                                            <i class= "bi bi-x-lg"></i>
                                         </button>
                                     </form>
                                 </div>

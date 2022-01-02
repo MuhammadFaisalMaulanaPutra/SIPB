@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\role;
+use App\Models\Kategori_Bencana;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class roleFactory extends Factory
+class kategori_bencanaFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Role::class;
+    protected $model = Kategori_Bencana::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class roleFactory extends Factory
     public function definition()
     {
         return [
-            'role' => $this->faker->word(),
+            'Kategori_Bencana'=> $this->faker->sentence(5),
         ];
     }
 }

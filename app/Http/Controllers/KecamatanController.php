@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kecamatan;
+use App\Models\Kota;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KecamatanController extends Controller
 {
@@ -27,7 +29,10 @@ class KecamatanController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboardview.create.kecamatan', [
+            'city'      => Kota::all(),
+            'title'     => 'Kota'
+        ]);
     }
 
     /**
@@ -38,7 +43,19 @@ class KecamatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'id_kota'   => 'required',
+            'nama_kec'     => 'required'
+        ]);
+
+        DB::table('kecamatan')->insert([
+            'FK_ID_KOTA'   => $validatedData['id_kota'],
+            'nama_kecamatan'     => $validatedData['nama_kec']
+        ]);
+
+        $request->session()->flash('success','Kecamatan Berhasil Ditambahkan');
+
+        return redirect('/dashboard-table-kecamatan');
     }
 
     /**
@@ -58,9 +75,13 @@ class KecamatanController extends Controller
      * @param  \App\Models\Kecamatan  $kecamatan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kecamatan $kecamatan)
+    public function edit($id)
     {
-        //
+        return view('dashboardview.edit.kecamatan',[
+            'district'  => Kecamatan::find($id),
+            'city'      => Kota::all(),
+            'title'     => 'Kecamatan'
+        ]);
     }
 
     /**
@@ -72,7 +93,19 @@ class KecamatanController extends Controller
      */
     public function update(Request $request, Kecamatan $kecamatan)
     {
-        //
+        $validatedData = $request->validate([
+            'id_kota'       => 'required',
+            'nama_kec'      => 'required'
+        ]);
+
+        DB::table('kecamatan')->where('id',$request->id)->update([
+            'FK_ID_KOTA'        => $validatedData['id_kota'],
+            'nama_kecamatan'    => $validatedData['nama_kec']
+        ]);
+
+        $request->session()->flash('updateDist','Kecamatan Berhasil Diperbarui');
+
+        return redirect('/dashboard-table-kecamatan');
     }
 
     /**
@@ -81,7 +114,7 @@ class KecamatanController extends Controller
      * @param  \App\Models\Kecamatan  $kecamatan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kecamatan $kecamatan)
+    public function destroy(Request $request,$id)
     {
         //
     }

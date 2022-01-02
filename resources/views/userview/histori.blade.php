@@ -35,6 +35,7 @@
 				<th scope="col">Tanggal</th>
 				<th scope="col">Waktu</th>
 				<th scope="col">Status</th>
+				<th scope="col">Image</th>
 				<th scope="col">Edit Laporan</th>
 				<th scope="col">Hapus</th>
 			</tr>
@@ -57,6 +58,9 @@
 					Declined    
 					@endif
 				</td>
+				
+				<td><img src="uploads/{{ $reports->image }}" style="width: 50px;"></td>
+				
 				<td><a href="{{ url("/histori-") }}{{ $reports->id }}">
 					<button class="btn btn-warning btn-block" type="submit">Edit</button>
 					</a>

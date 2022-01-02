@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use Illuminate\Support\Facades\DB;
@@ -19,9 +20,6 @@ class UserController extends Controller
     }
 
     public function create(Request $request){
-
-        
-
         User::create([
             'nama_user' => $request->nama_user,
             'tgl_lahir' => $request->tgl_lahir,
@@ -59,27 +57,31 @@ class UserController extends Controller
         return redirect('/login');
     }
 
-    public function show_create(){
-        return view('createuser');
-
-    }
-    public function destroy($id)
+    public function show($id)
     {
-    
-        $user = User::find($id);
-        $user->delete();
-
-        return redirect('/dashboard');
+        return view('dashboardview.table-user', [
+           'user' => User::where('id_role',$id)->get(),
+           'title' => 'User'
+        ]);  
     }
 
-    public function show_edit($id){
-        // dd(User::findOrFail($id));
-        return view ( 'edituser', [
-            'user'=> User::findOrFail($id)
-            // 'user'=> User::where('id',$id)->get()
-            
+    public function editrole($id)
+    {
+        return view('dashboardview.edit.editroleuser', [
+           'user' => User::find($id),
+           'role' => Role::all(),
+           'title' => User::find($id)->nama_user
+        ]);  
+    }
+
+    public function updaterole(Request $request){
+        DB::table('users')->where('id',$request->id)->update([
+            'id_role' => $request->id_role
         ]);
 
+        $request->session()->flash('update','Role Berhasil Diperbarui');
+
+        return redirect('/dashboard-table-user');
     }
 
 

@@ -25,8 +25,8 @@ class User extends Authenticatable
         return $this->hasMany('App/Pelaporan','FK_Id_user','id');
     }
 
-    public function user_role()
+    public function role()
     {
-        return $this->hasMany('App/UserRole','FK_Id_user','id');
+        return $this->belongsTo(Role::class,'id_role','id');
     }
 }

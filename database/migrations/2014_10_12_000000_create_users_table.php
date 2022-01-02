@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->date('tgl_lahir');
             $table->string('password');
+            $table->foreignId('id_role')->default('3');
             $table->rememberToken();
             $table->timestamps();
         });

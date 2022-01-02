@@ -55,20 +55,15 @@
                     <li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hai, {{ auth()->user()->nama_user }} <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-                            <li><a href=''>Profile</a></li>
-							<li><a href='dashboard-table-report'>Dashboard</a></li>
-							<div class="d-grid gap-2 col-6 mx-auto">
-								
+                            <li class="text-center"><a href=''>Profile</a></li>
+							@can('adminpetugas')
+							<li class="text-center"><a href='dashboard-table-report'>Dashboard</a></li>
+							@endcan
 							<form action="/logout" method="post">
 								@csrf
-								<button type="submit">
-									<a class="btn btn-danger btn-icon-split">
-										<span class="icon text-white-50">
-											<i class="bi bi-box-arrow-left"></i>
-										</span>
-										<span class="text">Logout</span>
-									</a>	
-								</button>
+								<div class="text-center">
+									<button class="btn btn-danger border-0"> Log Out</button>
+								</div>
 							</form>
 						</ul>
 					</li>

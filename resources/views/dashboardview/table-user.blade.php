@@ -7,7 +7,11 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-
+    @if (session()->has('update'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('update') }}
+        </div>
+    @endif
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -39,12 +43,10 @@
                             <th>{{ $users -> email }}</th>
                             <th>{{ $users -> tgl_lahir }}</th>
                             <th>
-                                <a href="#" class="btn btn-info btn-icon-split">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                    <span class="text">Role</span>
+                                <a href="{{ url('/form-edit-userrole-') }}{{ $users->id }}" class="btn btn-warning">
+                                    <i class="bi bi-pencil-fill"></i>
                                 </a>
+                                {{ $users -> role -> Role }}
                             </th> 
                         </tr> 
                         @endforeach

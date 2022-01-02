@@ -24,6 +24,7 @@ class CreatePelaporan extends Migration
             $table->time('waktu_bencana');
             $table->string('status');
             $table->timestamps();
+            $table->string('image')->nullable();
         });
         
         

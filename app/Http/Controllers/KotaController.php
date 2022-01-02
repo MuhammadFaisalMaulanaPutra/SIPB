@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kota;
+use App\Models\Provinsi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KotaController extends Controller
 {
@@ -27,7 +29,10 @@ class KotaController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboardview.create.kota',[
+            'province'  => Provinsi::all(),
+            'title'     => 'Kota',
+        ]);
     }
 
     /**
@@ -38,7 +43,19 @@ class KotaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'id_provinsi'   => 'required',
+            'nama_kota'     => 'required'
+        ]);
+
+        DB::table('kota')->insert([
+            'FK_ID_PROVINSI'   => $validatedData['id_provinsi'],
+            'nama_kota'     => $validatedData['nama_kota']
+        ]);
+
+        $request->session()->flash('success','Kota Berhasil Ditambahkan');
+
+        return redirect('/dashboard-table-kota');
     }
 
     /**
@@ -58,9 +75,13 @@ class KotaController extends Controller
      * @param  \App\Models\Kota  $kota
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kota $kota)
+    public function edit($id)
     {
-        //
+        return view('dashboardview.edit.kota',[
+            'city'      => Kota::find($id),
+            'province'  => Provinsi::all(),
+            'title'     => 'Kota'
+        ]);
     }
 
     /**
@@ -72,7 +93,19 @@ class KotaController extends Controller
      */
     public function update(Request $request, Kota $kota)
     {
-        //
+        $validatedData = $request->validate([
+            'id_provinsi'   => 'required',
+            'nama_kota'     => 'required'
+        ]);
+
+        DB::table('kota')->where('id',$request->id)->update([
+            'FK_ID_PROVINSI'   => $validatedData['id_provinsi'],
+            'nama_kota'     => $validatedData['nama_kota']
+        ]);
+
+        $request->session()->flash('update','Kota Berhasil Diperbarui');
+
+        return redirect('/dashboard-table-kota');
     }
 
     /**
@@ -81,7 +114,7 @@ class KotaController extends Controller
      * @param  \App\Models\Kota  $kota
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kota $kota)
+    public function destroy(Request $request,$id)
     {
         //
     }

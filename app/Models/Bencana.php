@@ -18,6 +18,6 @@ class Bencana extends Model
 
     public function Pelaporan2()
     {
-        return $this->hasMany('App/Pelaporan','FK_Id_bencana','id_bencana');
+        return $this->hasMany('App/Pelaporan','FK_Id_bencana','id');
     }
 }

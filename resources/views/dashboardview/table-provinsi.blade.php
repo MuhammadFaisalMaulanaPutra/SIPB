@@ -54,20 +54,14 @@
                             <th>{{ $provinces -> nama_provinsi }}</th>
                             <th>
                                 <div class="d-inline">
-                                    <a href="{{ url('/form-edit-provinsi-') }}{{ $provinces->id }}" class="btn btn-warning btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </span>
-                                        <span class="text">Edit</span>
+                                    <a href="{{ url('/form-edit-provinsi-') }}{{ $provinces->id }}" class="btn btn-warning">
+                                        <i class="bi bi-pencil-square"></i>
                                     </a>
                                     <form action="/dashboard-table-provinsi-{{ $provinces->id }}" method="post" class='d-inline'>
                                         @method('delete')
                                         @csrf
-                                        <button class="btn btn-danger btn-icon-split" type='submit'>
-                                            <span class="icon text-white-50">
-                                                <i class= "bi bi-x-lg"></i>
-                                            </span>
-                                            <span class="text">Hapus</span>
+                                        <button class="btn btn-danger" type='submit'>
+                                            <i class= "bi bi-x-lg"></i>
                                         </button>
                                     </form>
                                 </div>

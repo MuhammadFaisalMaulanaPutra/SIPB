@@ -13,7 +13,7 @@
                                 @csrf
                                 <div class="row mb-2">
                                     <div class="col-md-6">
-                                        <input class="form-control @error('nama_provinsi') is-invalid @enderror" id="inputName" name="nama_provinsi" type="text" maxlength="50" placeholder="Provinsi" value="{{ old('provinsi') }}" required/>
+                                        <input class="form-control @error('nama_provinsi') is-invalid @enderror" id="inputName" name="nama_provinsi" type="text" maxlength="50" placeholder="Provinsi" value="{{ old('nama_provinsi') }}" required/>
                                         @error('nama_provinsi')
                                             <div class="invalid-feedback">
                                             {{ $message }}

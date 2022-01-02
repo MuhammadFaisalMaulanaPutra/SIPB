@@ -14,7 +14,7 @@ class CreateBencana extends Migration
     public function up()
     {
         Schema::create('bencana', function (Blueprint $table) {
-            $table->id('id_bencana');
+            $table->id();
             $table->string('Nama_bencana');
             $table->timestamps();
         });

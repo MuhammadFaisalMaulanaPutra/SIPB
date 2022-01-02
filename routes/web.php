@@ -62,77 +62,95 @@ Route::get('/createuser', function () {
     return view('createuser');
 });
 
-Route::get('/laporan', [PelaporanController::class, 'create']);
 
-Route::get('/histori', [PelaporanController::class, 'index2']) ;
-
-Route::get('/dashboard',[UserController::class,'index']);
-
-Route::get('/dashboardhistori',[PelaporanController::class,'histori']);
-
-Route::post('/register', [UserController::class, 'store']) ;
+// -------------------------Login--------------------------------
 
 Route::post('/login', [LoginController::class, 'authenticate']) ;
 
 Route::post('/logout', [LoginController::class, 'logout']) ;
 
-Route::post('/lapor', [PelaporanController::class, 'store']) ;
-
-Route::get('/create',[UserController::class,'show_create']);
+// -------------------------User--------------------------------
+Route::post('/register', [UserController::class, 'store']) ;
 
 Route::POST('/createe',[UserController::class,'create']);
 
-Route::get ('/edituser/{id}',[UserController::class,'show_edit']);
-
 Route::put ('/updateuser/{id}',[UserController::class,'update']);
+
+// -------------------------Pelaporan--------------------------------
+Route::get('/histori', [PelaporanController::class, 'index2']) ;
+
+Route::get('/dashboardhistori',[PelaporanController::class,'histori']);
+
+Route::post('/lapor', [PelaporanController::class, 'store']) ;
+
+Route::get('/laporan', [PelaporanController::class, 'create']);
 
 Route::get ('/histori-{id}',[PelaporanController::class,'edit']);
 
 Route::put ('/edithistori/{id}',[PelaporanController::class,'update']);
 
-Route::delete('/dashboard/delete/{id}',[UserController::class,'destroy']);
-
-Route::delete('/dashboardhistori/delete/{id}',[PelaporanController::class,'destroy']);
-
 // -------------------------TABEL--------------------------------
 
-Route::get('/dashboard-table-user',[UserController::class, 'index'])->middleware('auth');
+Route::get('/dashboard-table-user',[UserController::class, 'index'])->middleware('admin');
 
-Route::get('/dashboard-table-role',[RoleController::class, 'index'])->middleware('auth');
+Route::get('/dashboard-table-role',[RoleController::class, 'index'])->middleware('admin');
 
-Route::get('/dashboard-table-bencana',[BencanaController::class, 'index'])->middleware('auth');
+Route::get('/dashboard-table-bencana',[BencanaController::class, 'index'])->middleware('admin');
 
-Route::get('/dashboard-table-provinsi', [ProvinsiController::class, 'index'])->middleware('auth');
+Route::get('/dashboard-table-provinsi', [ProvinsiController::class, 'index'])->middleware('admin');
 
-Route::get('/dashboard-table-kota', [KotaController::class, 'index'])->middleware('auth');
+Route::get('/dashboard-table-kota', [KotaController::class, 'index'])->middleware('admin');
 
-Route::get('/dashboard-table-kecamatan', [KecamatanController::class, 'index'])->middleware('auth');
+Route::get('/dashboard-table-kecamatan', [KecamatanController::class, 'index'])->middleware('admin');
 
-Route::get('/dashboard-table-report', [PelaporanController::class, 'index'])->middleware('auth');
+Route::get('/dashboard-table-report', [PelaporanController::class, 'index'])->middleware('petugas');
 
-Route::get('/dashboard-table-approved', [PelaporanController::class, 'approved'])->middleware('auth');
+Route::get('/dashboard-table-approved', [PelaporanController::class, 'approved'])->middleware('petugas');
 
-Route::get('/dashboard-table-approved-korban-{id}', [DetailKorbanController::class, 'index'])->middleware('auth');
+Route::get('/dashboard-table-approved-korban-{id}', [DetailKorbanController::class, 'index'])->middleware('petugas');
 
+Route::get('/dashboard-table-user-with-role-{id}',[UserController::class, 'show'])->middleware('admin');
+
+Route::get('/dashboard-table-report-detail-{id}', [PelaporanController::class, 'show'])->middleware('petugas');
 
 //===================crud========================
 
 
-Route::post('/report/approve/{id}', [PelaporanController::class, 'approve'])->middleware('auth');
+Route::post('/report/approve/{id}', [PelaporanController::class, 'approve'])->middleware('petugas');
 
-Route::post('/report/decline/{id}', [PelaporanController::class, 'decline'])->middleware('auth');
+Route::post('/report/decline/{id}', [PelaporanController::class, 'decline'])->middleware('petugas');
+
+Route::post('/report/unapprove/{id}', [PelaporanController::class, 'unapprove'])->middleware('petugas');
 
 Route::delete('/histori/delete/{id}', [PelaporanController::class, 'destroy'])->middleware('auth');
 
 
 
 //===================Store=======================
-Route::post('/create-provinsi', [ProvinsiController::class, 'store'])->middleware('auth');
+Route::post('/create-provinsi',         [ProvinsiController::class, 'store'])   ->middleware('admin');
+Route::post('/create-kota',             [KotaController::class, 'store'])       ->middleware('admin');
+Route::post('/create-kecamatan',        [KecamatanController::class, 'store'])  ->middleware('admin');
+Route::post('/create-bencana',          [BencanaController::class, 'store'])    ->middleware('admin');
+Route::post('/create-role',             [RoleController::class, 'store'])       ->middleware('admin');
 //===================Update======================
-Route::put('/edit-provinsi-{id}', [ProvinsiController::class, 'update'])->middleware('auth');
+Route::put('/edit-provinsi-{id}',       [ProvinsiController::class, 'update'])  ->middleware('admin');
+Route::put('/edit-kota-{id}',           [KotaController::class, 'update'])      ->middleware('admin');
+Route::put('/edit-kecamatan-{id}',      [KecamatanController::class, 'update']) ->middleware('admin');
+Route::put('/edit-bencana-{id}',        [BencanaController::class, 'update'])   ->middleware('admin');
+Route::put('/edit-role-{id}',           [RoleController::class, 'update'])      ->middleware('admin');
+Route::put('/edit-userrole-{id}',       [UserController::class, 'updaterole'])  ->middleware('admin');
 //===================Destroy=====================
-Route::delete('dashboard-table-provinsi-{id}', [ProvinsiController::class, 'destroy'])->middleware('auth');
+Route::delete('dashboard-table-provinsi-{id}', [ProvinsiController::class, 'destroy'])->middleware('admin');
 //===================Create======================
-Route::get('/form-create-provinsi', [ProvinsiController::class, 'create'])->middleware('auth');
+Route::get('/form-create-provinsi',     [ProvinsiController::class, 'create'])  ->middleware('admin');
+Route::get('/form-create-kota',         [KotaController::class, 'create'])      ->middleware('admin');
+Route::get('/form-create-kecamatan',    [KecamatanController::class, 'create']) ->middleware('admin');
+Route::get('/form-create-bencana',      [BencanaController::class, 'create'])   ->middleware('admin');
+Route::get('/form-create-role',         [RoleController::class, 'create'])      ->middleware('admin');
 //===================Edit========================
-Route::get('/form-edit-provinsi-{id}', [ProvinsiController::class, 'edit'])->middleware('auth');
+Route::get('/form-edit-provinsi-{id}',  [ProvinsiController::class, 'edit'])    ->middleware('admin');
+Route::get('/form-edit-kota-{id}',      [KotaController::class, 'edit'])        ->middleware('admin');
+Route::get('/form-edit-kecamatan-{id}', [KecamatanController::class, 'edit'])   ->middleware('admin');
+Route::get('/form-edit-bencana-{id}',   [BencanaController::class, 'edit'])     ->middleware('admin');
+Route::get('/form-edit-role-{id}',      [RoleController::class, 'edit'])        ->middleware('admin');
+Route::get('/form-edit-userrole-{id}',  [UserController::class, 'editrole'])    ->middleware('admin');

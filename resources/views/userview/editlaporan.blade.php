@@ -113,7 +113,16 @@
 						   		@enderror  
 						   </div>
 						   
-						   
+						   <div class="top-margin">
+							<label for="image" class="form-label">Upload Lampiran</label>
+							<input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image">
+							@error('image')
+
+                                    <div class="invalid-feedback text-danger">
+                            	        {{ $message }}
+                                	</div>
+                                @enderror
+						   </div>
 						   
    
 						   

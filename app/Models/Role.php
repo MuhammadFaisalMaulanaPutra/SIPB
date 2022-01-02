@@ -11,9 +11,9 @@ class Role extends Model
     
     protected $table = 'role';
 
-    public function userRole()
+    public function user()
     {
-        return $this->hasMany('App/UserRole','FK_Id_role','id_role');
+        return $this->hasMany(User::class,'id_role','id');
     }
 
 }

@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {   
-        \App\Models\User::factory(50)->create();
-        
-        \App\Models\Role::factory(10)->create();
-        
-        \App\Models\UserRole::factory(50)->create();
+        DB::table('role')->insert([
+            ['Role'=> 'Admin'],
+            ['Role'=> 'Petugas'],
+            ['Role'=> 'User']
+        ]);
         
         \App\Models\Provinsi::factory(10)->create();
      
@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
         ]);
         
         \App\Models\Bencana::factory(10)->create();
+
+        \App\Models\User::factory(50)->create();
         
         \App\Models\Pelaporan::factory(50)->create();
         
